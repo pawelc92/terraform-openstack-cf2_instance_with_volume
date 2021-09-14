@@ -4,53 +4,47 @@ variable "flavor_name" {
   description = "Flavor name."
 }
 
-variable "key_pair_name" {
+variable "key_pair" {
   type        = string
-  description = "The name of an existing ssh key in the project."
+  description = "The name of a key pair to put on the server. The key pair must already be created and associated with the tenant's account. Changing this creates a new instance."
 }
 
 variable "image_name" {
   type        = string
-  description = "Image name."
+  description = "Image name. Changing this creates a new instance and volume."
 }
 
 variable "network_name" {
   type        = string
-  description = "The name of the network to be attached to the instance."
+  description = "A name of a private network to be attached to the instance."
 }
 
-variable "volume_size_in_gb" {
+variable "volume_size" {
   type        = number
-  description = "Volume size expressed in gigabytes."
+  description = "The size of the volume to create (in gigabytes). Changing this creates a new instance and volume."
 }
 
 # Optional variables
-variable "number_of_instances" {
-  type        = number
-  default     = 1
-  description = "Number of instances to be created. If the number is greater than 1, the number will be appended to the instance name."
-}
-
-variable "attach_eodata" {
-  type        = bool
-  default     = false
-  description = "True if the eodata network is to be attached to the instance. Attention! You must manually mount the eodata resource in the operating system."
-}
-
-variable "associate_floating_ip" {
-  type        = bool
-  default     = false
-  description = "True if floating IP is to be associated to the instance. Floating IP will be automatically assigned from the external pool in which the router of the network attached to the instance is located."
-}
-
-variable "instance_name" {
+variable "name" {
   type        = string
   default     = "cf2_instance_with_volume"
-  description = "Instance name. If the number of instances is greater than 1, the number will be appended to the name of each instance."
+  description = "A unique name for the instance."
 }
 
 variable "security_groups" {
   type        = list(any)
   default     = ["default"]
-  description = "List of groups attached to the instance network port. This does not apply to the eodata network port."
+  description = "An array of one or more security groups to add to the instance. Adds security groups only to the private network port indicated in network_name. If empty, the 'default' security group is added by default."
+}
+
+variable "associate_floating_ip" {
+  type        = bool
+  default     = false
+  description = "Set 'true' to associate floating IP to the instance. Automatically assigns floating IP from the external pool in which the router of the private network attached to the instance is located."
+}
+
+variable "attach_eodata" {
+  type        = bool
+  default     = false
+  description = "Set 'true' to attach the eodata network to the instance. Attention! You must manually mount the eodata resource in the operating system."
 }

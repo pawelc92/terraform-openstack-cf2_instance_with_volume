@@ -1,2 +1,2 @@
-# terraform-openstack-cf2-instance_with_volume
-Module for creating a CF2 instance with a volume.
+# terraform-openstack-cf2_instance_with_volume
+Create an instance with bootable volume. Easily associate a floating IP address automatically selected from the external pool attached to your router.

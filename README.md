@@ -10,7 +10,8 @@ Create single simple instance with bootable volume.
 
 ```hcl
 module "cf2_instance_with_volume" {
-  source = "pawelc92/cf2_instance_with_volume/openstack"
+  source  = "pawelc92/cf2_instance_with_volume/openstack"
+  version = "1.1.2"
 
   name         = "my-instance"
   volume_size  = 5
@@ -35,8 +36,9 @@ Create multiple instances by adding the count argument to the module. Add count.
 
 ```hcl
 module "cf2_instance_with_volume" {
-  source = "pawelc92/cf2_instance_with_volume/openstack"
-  count  = 2
+  source  = "pawelc92/cf2_instance_with_volume/openstack"
+  version = "1.1.2"
+  count   = 2
 
   name         = "my-instance-${count.index}"
   volume_size  = 5

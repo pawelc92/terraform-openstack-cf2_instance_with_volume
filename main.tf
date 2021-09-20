@@ -24,7 +24,7 @@ resource "openstack_networking_floatingip_v2" "floating_ip" {
 resource "openstack_networking_floatingip_associate_v2" "floating_ip_association" {
   count       = var.associate_floating_ip ? 1 : 0
   floating_ip = openstack_networking_floatingip_v2.floating_ip[count.index].address
-  port_id     = openstack_networking_port_v2.private_network_port[count.index].id
+  port_id     = openstack_networking_port_v2.private_network_port.id
 }
 
 # Volume

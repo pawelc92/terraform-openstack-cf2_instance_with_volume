@@ -48,3 +48,8 @@ variable "attach_eodata" {
   default     = false
   description = "Set 'true' to attach the eodata network to the instance. Attention! You must manually mount the eodata resource in the operating system."
 }
+
+# Security groups
+locals {
+  sg_count = length(var.security_groups)
+}

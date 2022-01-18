@@ -1,15 +1,6 @@
-data "openstack_compute_flavor_v2" "flavor" {
-  name = var.flavor_name
-}
-
 # Private network
 data "openstack_networking_network_v2" "network" {
   name = var.network_name
-}
-
-# Security groups
-locals {
-  sg_count = length(var.security_groups)
 }
 
 data "openstack_networking_secgroup_v2" "security_groups" {
